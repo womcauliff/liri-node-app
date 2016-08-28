@@ -84,6 +84,12 @@ function getSong() {
 			+ "\nUsage: node liri.js " + this.commandText + " argument");
 		return(1);
 	}
+	var argString = "";
+	for (var i = 3; i < process.argv.length; i++) {
+		argString += process.argv[i] + " ";
+	}
+	argString.trim();
+	console.log(argString);
 	return(0);
 }
 
@@ -102,6 +108,12 @@ function getFilm() {
 			+ "\nUsage: node liri.js " + this.commandText + " argument");
 		return(1);
 	}
+	var argString = "";
+	for (var i = 3; i < process.argv.length; i++) {
+		argString += process.argv[i] + " ";
+	}
+	argString.trim();
+	console.log(argString);
 	return(0);
 }
 
