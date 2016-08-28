@@ -19,8 +19,42 @@ function main() {
 		return(1);
 	}
 	else {
-		return (0);
+		//Creating Command Objects
+		var commandObjects = [
+			new CommandObjectConstructor('my-tweets', getTweets),
+			new CommandObjectConstructor('spotify-this-song', getSong),
+			new CommandObjectConstructor('movie-this', getFilm),
+			new CommandObjectConstructor('do-what-it-says', doThis)
+		];
+		//Call to helper function, parseCommand()
+		return parseCommand(process.argv[2], commandObjects);
 	}
+}
+
+/**
+ * parseCommand():
+ * Matches the user's command to a list of Command Objects,
+ * and calls the corresponding handler function.
+ *
+ * @param {string} clCommand the command from the command line interface
+ * @param {CommandObjectConstructor[]} commandObjects array of CommandObjects
+ * @return {number} 0 for success, 1 on error
+ */
+function parseCommand(clCommand, commandObjects) {
+	console.log("parseCommand()");
+	for(var i = 0; commandObjects.length - 1; i++) {
+		if (clCommand === commandObjects[i].commandText) {
+			return (commandObjects[i].commandHandler());
+		}
+	}
+	//Error: No matching command for cli argument found
+	var outputString = "Error: '" + clCommand + "' not found." 
+				+ "\nPlease use one of the following commands: ";
+	for(var i = 0; i < commands.length - 1; i++) {
+		outputString += "\n " + commands[i];
+	}
+	console.log(outputString);
+	return(1);
 }
 
 /**
