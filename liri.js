@@ -89,7 +89,25 @@ function getSong() {
 		argString += process.argv[i] + " ";
 	}
 	argString.trim();
-	console.log(argString);
+	console.log("query: " + argString);
+
+	var spotify = require('spotify');
+	 
+	spotify.search({ type: 'track', query: argString }, function(err, data) {
+	    if ( err ) {
+	        console.log('Error occurred: ' + err);
+	        return (1);
+	    }
+	    else if (data.tracks.total == 0) {
+	    	console.log("No results found.");
+	    	return(0);
+	    }
+	 	
+	 	console.log("   Song Name: " + data.tracks.items[0].name);
+	 	console.log("       Album: " + data.tracks.items[0].album.name);
+	 	console.log("   Artist(s): " + data.tracks.items[0].artists[0].name);
+	 	console.log("Preview Link: " + data.tracks.items[0].preview_url);
+	});
 	return(0);
 }
 
