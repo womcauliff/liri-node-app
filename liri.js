@@ -42,7 +42,7 @@ function main() {
  */
 function parseCommand(clCommand, commandObjects) {
 	console.log("parseCommand()");
-	for(var i = 0; commandObjects.length - 1; i++) {
+	for(var i = 0; i < commandObjects.length; i++) {
 		if (clCommand === commandObjects[i].commandText) {
 			return (commandObjects[i].commandHandler());
 		}
@@ -50,8 +50,8 @@ function parseCommand(clCommand, commandObjects) {
 	//Error: No matching command for cli argument found
 	var outputString = "Error: '" + clCommand + "' not found." 
 				+ "\nPlease use one of the following commands: ";
-	for(var i = 0; i < commands.length - 1; i++) {
-		outputString += "\n " + commands[i];
+	for(var i = 0; i < commandObjects.length; i++) {
+		outputString += "\n " + commandObjects[i].commandText;
 	}
 	console.log(outputString);
 	return(1);
@@ -69,23 +69,21 @@ function getTweets() {
 	console.log("getTweets()");
 	var Twitter = require('twitter');
  
-	var client = new Twitter({
-	  consumer_key: importedKeys.twitterKeys.consumer_key,
-	  consumer_secret: importedKeys.twitterKeys.consumer_secret,
-	  access_token_key: importedKeys.twitterKeys.access_token_secret,
-	  access_token_secret: importedKeys.twitterKeys.access_token_secret
-	});
+	var client = new Twitter(importedKeys.twitterKeys);
 	 
-	var params = {screen_name: 'nodejs'};
+	var params = {screen_name: 'womcauliff'};
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	  if (!error) {
-	    console.log(tweets);
+	    console.log(JSON.stringify(tweets, null, 2));
+	    for (var i = 0; i < tweets.length; i++) {
+	    	console.log(tweets[i].text);
+	    }
 	  }
 	  else {
 	  	console.log(error);
 	  }
 	});
-	return(0);
+	return(0);	
 }
 
 /**
