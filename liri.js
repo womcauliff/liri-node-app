@@ -168,12 +168,46 @@ function getFilm() {
 		argString = "Mr. Nobody";
 	}
 	else {
-		for (var i = 3; i < process.argv.length; i++) {
-			argString += process.argv[i] + " ";
+		argString = process.argv[3]
+		for (var i = 4; i < process.argv.length; i++) {
+			argString += "+" + process.argv[i];
 		}
 		argString.trim();
 		console.log(argString);
 	}
+
+	var request = require('request');
+	var uri = 'http://www.omdbapi.com/?t=' 
+		+ argString 
+		+ '&y='
+		+ '&plot=short'
+		+ '&r=json'
+		+ '&tomatoes=true';
+	console.log(uri);
+	request(uri, function (error, response, body) {
+		if (error) {
+			console.log(error);
+			return(1);
+		}
+		else if (!error && response.statusCode == 200) {
+			body = JSON.parse(body);
+			var outputString =
+				"\nTitle: " + body["Title"]
+				+ "\nYear: " + body["Year"]
+				+ "\nCountry Produced: " + body["Country"]
+				+ "\nLanguage: " + body["Language"]
+				+ "\nPlot: " + body["Plot"]
+				+ "\nActors: " + body["Actors"]
+				+ "\nIMDB Rating: " + body["imdbRating"]
+				+ "\nRotten Tomatoes Rating: " + body["tomatoRating"]
+				+ "\nRotten Tomatoes URL: " + body["tomatoURL"];
+			console.log(outputString);
+		}
+		else {
+			console.log(response);
+			return(1);
+		}
+	});
 	return(0);
 }
 
