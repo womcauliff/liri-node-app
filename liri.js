@@ -101,17 +101,27 @@ function getTweets() {
 function getSong() {
 	console.log("getSong()");
 
-	if (process.argv[3] === undefined) {
-		console.log("Error: missing argument."
-			+ "\nUsage: node liri.js " + this.commandText + " argument");
-		return(1);
-	}
+	/*
+	 * Normally, without user input, we would return with an error
+	 * However, default input was specified in the assignment.
+	 * ("The Sign" by Ace of Base)
+	 */
+	// if (process.argv[3] === undefined) {
+	// 	console.log("Error: missing argument."
+	// 		+ "\nUsage: node liri.js " + this.commandText + " argument(s)");
+	// 	return(1);
+	// }
 	var argString = "";
-	for (var i = 3; i < process.argv.length; i++) {
-		argString += process.argv[i] + " ";
+	if(process.argv[3] === undefined) {
+		argString = "The Sign Ace of Base";
 	}
-	argString.trim();
-	console.log("query: " + argString);
+	else {
+		for (var i = 3; i < process.argv.length; i++) {
+			argString += process.argv[i] + " ";
+		}
+		argString.trim();
+		console.log("query: " + argString);
+	}
 
 	var spotify = require('spotify');
 	 
@@ -143,17 +153,27 @@ function getSong() {
  */
 function getFilm() {
 	console.log("getFilm()");
-	if (process.argv[3] === undefined) {
-		console.log("Error: missing argument."
-			+ "\nUsage: node liri.js " + this.commandText + " argument");
-		return(1);
-	}
+	/*
+	 * Normally, without user input, we would return with an error
+	 * However, default input was specified in the assignment.
+	 * ("Mr. Nobody")
+	 */
+	// if (process.argv[3] === undefined) {
+	// 	console.log("Error: missing argument."
+	// 		+ "\nUsage: node liri.js " + this.commandText + " argument(s)");
+	// 	return(1);
+	// }
 	var argString = "";
-	for (var i = 3; i < process.argv.length; i++) {
-		argString += process.argv[i] + " ";
+	if(process.argv[3] === undefined) {
+		argString = "Mr. Nobody";
 	}
-	argString.trim();
-	console.log(argString);
+	else {
+		for (var i = 3; i < process.argv.length; i++) {
+			argString += process.argv[i] + " ";
+		}
+		argString.trim();
+		console.log(argString);
+	}
 	return(0);
 }
 
