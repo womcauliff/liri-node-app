@@ -95,7 +95,8 @@ function getTweets() {
  */
 function getSong() {
 	console.log("getSong()");
-	if (process.argv[3] === "") {
+
+	if (process.argv[3] === undefined) {
 		console.log("Error: missing argument."
 			+ "\nUsage: node liri.js " + this.commandText + " argument");
 		return(1);
