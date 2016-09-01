@@ -15,7 +15,12 @@ function main() {
 	//minimum number of arguments for any command.
 	if (process.argv.length < 3) {
 		console.log("Error: invalid number of arguments."
-			+ "\nUsage: node liri.js [command] [arg]");
+			+ "\nUsage: node liri.js [command] [arg]"
+			+ "\nList of Commands:"
+			+ "\n\tmy-tweets"
+			+ "\n\tspotify-this-song"
+			+ "\n\tmovie-this"
+			+ "\n\tdo-what-it-says");
 		return(1);
 	}
 	else {
