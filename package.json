@@ -1,0 +1,31 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "Language Interpretation and Recognition Interface (LIRI). A command line node app to search for songs, tweets, and film info.",
+  "main": "liri.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "request": "^2.74.0",
+    "spotify": "^0.3.0",
+    "twitter": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node liri.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/womcauliff/liri-node-app.git"
+  },
+  "keywords": [
+    "spotify",
+    "twitter",
+    "film"
+  ],
+  "author": "Will McAuliff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/womcauliff/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/womcauliff/liri-node-app#readme"
+}
