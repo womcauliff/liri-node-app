@@ -32,7 +32,7 @@ function main() {
 			new CommandObject('do-what-it-says', doThis)
 		];
 		//Call to helper function, parseCommand()
-		return parseCommand(process.argv[2], commandObjects);
+		return parseCommand(process.argv[2], process.argv.slice(3, process.argv.length).join(' '), commandObjects);
 	}
 }
 
@@ -42,14 +42,18 @@ function main() {
  * and calls the corresponding handler function.
  *
  * @param {string} clCommand the command from the command line interface
+ * @param {string} clArgs the arguments which will be passed to the command
  * @param {CommandObject[]} commandObjects array of CommandObjects
  * @return {number} 0 for success, 1 on error
  */
-function parseCommand(clCommand, commandObjects) {
+function parseCommand(clCommand, clArgs, commandObjects) {
 	console.log("parseCommand()");
+	console.log(clArgs);
 	for(var i = 0; i < commandObjects.length; i++) {
+		//Find the matching CommandObject text,
+		//and pass clArgs to its handler function
 		if (clCommand === commandObjects[i].commandText) {
-			return (commandObjects[i].commandHandler());
+			return (commandObjects[i].commandHandler(clArgs));
 		}
 	}
 	//Error: No matching command for cli argument found
