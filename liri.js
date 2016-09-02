@@ -48,7 +48,7 @@ function main() {
  */
 function parseCommand(clCommand, clArgs, commandObjects) {
 	console.log("parseCommand()");
-	console.log(clArgs);
+	console.log((typeof clArgs) + ":" + clArgs);
 	for(var i = 0; i < commandObjects.length; i++) {
 		//Find the matching CommandObject text,
 		//and pass clArgs to its handler function
@@ -104,32 +104,25 @@ function getTweets() {
  * Function handler for spotify-this-song command that uses
  * the node module, 'spotify', to log information
  * for a given song title
+ *
+ * @param {string} argString the user's query
  * @return {number} 0 for success, 1 on error
  */
-function getSong() {
+function getSong(argString) {
 	console.log("getSong()");
 
 	/*
-	 * Normally, without user input, we would return with an error
+	 * Normally, without user input, function returns with an error
 	 * However, default input was specified in the assignment.
 	 * ("The Sign" by Ace of Base)
 	 */
-	// if (process.argv[3] === undefined) {
-	// 	console.log("Error: missing argument."
-	// 		+ "\nUsage: node liri.js " + this.commandText + " argument(s)");
-	// 	return(1);
-	// }
-	var argString = "";
-	if(process.argv[3] === undefined) {
+	if(argString === undefined || argString === "") {
+		// 	console.log("Error: missing argument."
+		// 		+ "\nUsage: node liri.js " + this.commandText + " argument(s)");
+		// 	return(1);
 		argString = "The Sign Ace of Base";
 	}
-	else {
-		for (var i = 3; i < process.argv.length; i++) {
-			argString += process.argv[i] + " ";
-		}
-		argString.trim();
-		console.log("query: " + argString);
-	}
+	console.log("query: " + argString);
 
 	var spotify = require('spotify');
 	 
