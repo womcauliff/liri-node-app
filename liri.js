@@ -226,6 +226,21 @@ function getFilm() {
  */
 function doThis() {
 	console.log("doThis()");
+	var fs = require('fs');
+
+	fs.readFile("random.txt", "utf8", function(error, data) {
+
+		if(error) {
+			console.log(error);
+			return(1);
+		}
+
+		// Split file by commas
+		var dataArr = data.split(',');
+
+		// We will then re-display the content with the split for aesthetics.
+		console.log(dataArr);
+	});
 	return(0);
 }
 
