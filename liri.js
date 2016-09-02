@@ -26,10 +26,10 @@ function main() {
 	else {
 		//Creating Command Objects
 		var commandObjects = [
-			new CommandObjectConstructor('my-tweets', getTweets),
-			new CommandObjectConstructor('spotify-this-song', getSong),
-			new CommandObjectConstructor('movie-this', getFilm),
-			new CommandObjectConstructor('do-what-it-says', doThis)
+			new CommandObject('my-tweets', getTweets),
+			new CommandObject('spotify-this-song', getSong),
+			new CommandObject('movie-this', getFilm),
+			new CommandObject('do-what-it-says', doThis)
 		];
 		//Call to helper function, parseCommand()
 		return parseCommand(process.argv[2], commandObjects);
@@ -42,7 +42,7 @@ function main() {
  * and calls the corresponding handler function.
  *
  * @param {string} clCommand the command from the command line interface
- * @param {CommandObjectConstructor[]} commandObjects array of CommandObjects
+ * @param {CommandObject[]} commandObjects array of CommandObjects
  * @return {number} 0 for success, 1 on error
  */
 function parseCommand(clCommand, commandObjects) {
@@ -245,16 +245,15 @@ function doThis() {
 }
 
 /**
- * Command Object Constructor():
+ * CommandObject():
  *
  * @param {string }commandText the text to execute the command
  * @param {function} commandHandler the function called by the command
  * @return a Command Object
  */
-function CommandObjectConstructor(commandText, commandHandler) {
-	var c = {
-		commandText: commandText,
-		commandHandler: commandHandler
+function CommandObject(commandText, commandHandler) {
+	this.commandText = commandText;
+	this.commandHandler = function(additionalParams) {
+		return commandHandler(additionalParams);
 	}
-	return c;
 }
