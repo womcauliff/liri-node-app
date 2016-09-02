@@ -76,17 +76,21 @@ function getTweets() {
  
 	var client = new Twitter(importedKeys.twitterKeys);
 	 
-	var params = {screen_name: 'womcauliff'};
+	var params = {
+		screen_name: 'womcauliff',
+		count: 20
+	};
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
-	  if (!error) {
-	    //console.log(JSON.stringify(tweets, null, 2));
-	    for (var i = 0; i < tweets.length; i++) {
-	    	console.log("-- " + tweets[i].text);
-	    }
-	  }
-	  else {
-	  	console.log(error);
-	  }
+		if (!error) {
+			for (var i = 0; i < tweets.length; i++) {
+				console.log("\n" + (i+1) + "\t" + tweets[i].created_at);
+				console.log("\t" + tweets[i].text);
+			}
+		}
+		else {
+			console.log(error);
+			return(1);
+		}
 	});
 	return(0);	
 }
