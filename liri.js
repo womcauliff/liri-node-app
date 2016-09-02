@@ -1,3 +1,5 @@
+//Consumer and Access keys are required
+//in order to access one's Twitter timeline
 var importedKeys = require('./keys.js');
 var commandObjects = [];
 // Status code for success is 0
