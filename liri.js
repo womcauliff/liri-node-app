@@ -151,32 +151,23 @@ function getSong(argString) {
  * the node module, 'request', to access the OMDB and
  * log information for a given film title
  *
+ * @param {string} argString the user's query
  * @return {number} 0 for success, 1 on error
  */
-function getFilm() {
+function getFilm(argString) {
 	console.log("getFilm()");
 	/*
-	 * Normally, without user input, we would return with an error
+	 * Normally, without user input, function returns with an error
 	 * However, default input was specified in the assignment.
 	 * ("Mr. Nobody")
 	 */
-	// if (process.argv[3] === undefined) {
-	// 	console.log("Error: missing argument."
-	// 		+ "\nUsage: node liri.js " + this.commandText + " argument(s)");
-	// 	return(1);
-	// }
-	var argString = "";
-	if(process.argv[3] === undefined) {
+	if(argString === undefined || argString === "") {
+		// 	console.log("Error: missing argument."
+		// 		+ "\nUsage: node liri.js " + this.commandText + " argument(s)");
+		// 	return(1);
 		argString = "Mr. Nobody";
 	}
-	else {
-		argString = process.argv[3]
-		for (var i = 4; i < process.argv.length; i++) {
-			argString += "+" + process.argv[i];
-		}
-		argString.trim();
-		console.log(argString);
-	}
+	console.log(argString);
 
 	var request = require('request');
 	var uri = 'http://www.omdbapi.com/?t=' 
