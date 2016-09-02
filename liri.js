@@ -134,11 +134,12 @@ function getSong() {
 	    	console.log("No results found.");
 	    	return(0);
 	    }
-	 	
-	 	console.log("   Song Name: " + data.tracks.items[0].name);
-	 	console.log("       Album: " + data.tracks.items[0].album.name);
-	 	console.log("   Artist(s): " + data.tracks.items[0].artists[0].name);
-	 	console.log("Preview Link: " + data.tracks.items[0].preview_url);
+	 	var outputString =
+			"\tSong Name: " + data.tracks.items[0].name
+	 		+ "\n\tAlbum: " + data.tracks.items[0].album.name
+	 		+ "\n\tArtist(s): " + data.tracks.items[0].artists[0].name
+	 		+ "\n\tPreview Link: " + data.tracks.items[0].preview_url;
+	 	console.log(outputString);
 	});
 	return(0);
 }
@@ -192,15 +193,15 @@ function getFilm() {
 		else if (!error && response.statusCode == 200) {
 			body = JSON.parse(body);
 			var outputString =
-				"\nTitle: " + body["Title"]
-				+ "\nYear: " + body["Year"]
-				+ "\nCountry Produced: " + body["Country"]
-				+ "\nLanguage: " + body["Language"]
-				+ "\nPlot: " + body["Plot"]
-				+ "\nActors: " + body["Actors"]
-				+ "\nIMDB Rating: " + body["imdbRating"]
-				+ "\nRotten Tomatoes Rating: " + body["tomatoRating"]
-				+ "\nRotten Tomatoes URL: " + body["tomatoURL"];
+				"\tTitle: " + body["Title"]
+				+ "\n\tYear: " + body["Year"]
+				+ "\n\tCountry Produced: " + body["Country"]
+				+ "\n\tLanguage: " + body["Language"]
+				+ "\n\tPlot: " + body["Plot"]
+				+ "\n\tActors: " + body["Actors"]
+				+ "\n\tIMDB Rating: " + body["imdbRating"]
+				+ "\n\tRotten Tomatoes Rating: " + body["tomatoRating"]
+				+ "\n\tRotten Tomatoes URL: " + body["tomatoURL"];
 			console.log(outputString);
 		}
 		else {
