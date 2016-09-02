@@ -1,4 +1,5 @@
 var importedKeys = require('./keys.js');
+var commandObjects = [];
 // Status code for success is 0
 var status = main();
 console.log(status);
@@ -25,7 +26,7 @@ function main() {
 	}
 	else {
 		//Creating Command Objects
-		var commandObjects = [
+		commandObjects = [
 			new CommandObject('my-tweets', getTweets),
 			new CommandObject('spotify-this-song', getSong),
 			new CommandObject('movie-this', getFilm),
@@ -208,7 +209,7 @@ function getFilm(argString) {
  * doThis():
  * Function handler for do-what-it-says command that uses
  * parses a local file, 'random.txt' for a LIRI command
- * and calls the relevant command.
+ * and passes it as input to the parseCommand function.
  *
  * @return {number} 0 for success, 1 on error
  */
@@ -222,12 +223,11 @@ function doThis() {
 			console.log(error);
 			return(1);
 		}
-
 		// Split file by commas
 		var dataArr = data.split(',');
 
-		// We will then re-display the content with the split for aesthetics.
-		console.log(dataArr);
+		//make call to parseCommand function,
+		return parseCommand(dataArr[0], dataArr[1], commandObjects);
 	});
 	return(0);
 }
