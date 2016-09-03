@@ -1,7 +1,12 @@
 //Consumer and Access keys are required
 //in order to access one's Twitter timeline
 var importedKeys = require('./keys.js');
+
+//Command Objects defined in external file
+var CommandObject = require('./commandobject.js');
 var commandObjects = [];
+
+
 // Status code for success is 0
 var status = main();
 console.log(status);
@@ -68,6 +73,10 @@ function parseCommand(clCommand, clArgs, commandObjects) {
 	console.log(outputString);
 	return(1);
 }
+
+/**
+ * Handler functions for CommandObjects
+ */
 
 /**
  * getTweets():
@@ -232,18 +241,4 @@ function doThis() {
 		return parseCommand(dataArr[0], dataArr[1], commandObjects);
 	});
 	return(0);
-}
-
-/**
- * CommandObject():
- *
- * @param {string }commandText the text to execute the command
- * @param {function} commandHandler the function called by the command
- * @return a Command Object
- */
-function CommandObject(commandText, commandHandler) {
-	this.commandText = commandText;
-	this.commandHandler = function(additionalParams) {
-		return commandHandler(additionalParams);
-	}
 }
