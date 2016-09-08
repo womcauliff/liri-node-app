@@ -9,7 +9,7 @@ var commandObjects = [];
 
 // Status code for success is 0
 var status = main();
-console.log(status);
+//console.log(status);
 
 /**
  * main():
@@ -18,7 +18,7 @@ console.log(status);
  * @return {number} 0 for success, 1 on error
  */
 function main() {
-	console.log("main()");
+	//console.log("main()");
 	//Checking if argument length is less than the 
 	//minimum number of arguments for any command.
 	if (process.argv.length < 3) {
@@ -55,8 +55,8 @@ function main() {
  * @return {number} 0 for success, 1 on error
  */
 function parseCommand(clCommand, clArgs, commandObjects) {
-	console.log("parseCommand()");
-	console.log((typeof clArgs) + ":" + clArgs);
+	//console.log("parseCommand()");
+	//console.log((typeof clArgs) + ":" + clArgs);
 	for(var i = 0; i < commandObjects.length; i++) {
 		//Find the matching CommandObject text,
 		//and pass clArgs to its handler function
@@ -87,7 +87,7 @@ function parseCommand(clCommand, clArgs, commandObjects) {
  * @return {number} 0 for success, 1 on error
  */
 function getTweets() {
-	console.log("getTweets()");
+	//console.log("getTweets()");
 	var Twitter = require('twitter');
  
 	var client = new Twitter(importedKeys.twitterKeys);
@@ -121,7 +121,7 @@ function getTweets() {
  * @return {number} 0 for success, 1 on error
  */
 function getSong(argString) {
-	console.log("getSong()");
+	//console.log("getSong()");
 
 	/*
 	 * Normally, without user input, function returns with an error
@@ -134,7 +134,7 @@ function getSong(argString) {
 		// 	return(1);
 		argString = "The Sign Ace of Base";
 	}
-	console.log("query: " + argString);
+	//console.log("query: " + argString);
 
 	var spotify = require('spotify');
 	 
@@ -167,7 +167,7 @@ function getSong(argString) {
  * @return {number} 0 for success, 1 on error
  */
 function getFilm(argString) {
-	console.log("getFilm()");
+	//console.log("getFilm()");
 	/*
 	 * Normally, without user input, function returns with an error
 	 * However, default input was specified in the assignment.
@@ -179,7 +179,7 @@ function getFilm(argString) {
 		// 	return(1);
 		argString = "Mr. Nobody";
 	}
-	console.log(argString);
+	//console.log(argString);
 
 	var request = require('request');
 	var uri = 'http://www.omdbapi.com/?t=' 
@@ -188,7 +188,7 @@ function getFilm(argString) {
 		+ '&plot=short'
 		+ '&r=json'
 		+ '&tomatoes=true';
-	console.log(uri);
+	//console.log(uri);
 	request(uri, function (error, response, body) {
 		if (error) {
 			console.log(error);
@@ -225,7 +225,7 @@ function getFilm(argString) {
  * @return {number} 0 for success, 1 on error
  */
 function doThis() {
-	console.log("doThis()");
+	//console.log("doThis()");
 	var fs = require('fs');
 
 	fs.readFile("random.txt", "utf8", function(error, data) {
